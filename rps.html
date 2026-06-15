@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Rock Paper Scissors</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: rgb(103, 192, 233);
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: rgb(103, 192, 233);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: rgb(64, 174, 225);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .choices {
+            margin-top: 20px;
+            color: #666;
+            min-height: 20px;
+        }
+
+        h4 {
+            margin-top: 30px;
+            color: #333;
+            min-height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Rock - Paper - Scissors</h2>
+
+        <button onclick="playGame('rock')">Rock</button>
+        <button onclick="playGame('paper')">Paper</button>
+        <button onclick="playGame('scissors')">Scissors</button>
+
+        <div class="choices" id="choices"></div>
+
+        <h4 id="result"></h4>
+
+    </div>
+
+    <script>
+
+        function playGame(userChoice) {
+
+            var options = ["rock", "paper", "scissors"];
+
+            var randomNumber = Math.floor(Math.random() * 3);
+
+            var computerChoice = options[randomNumber];
+
+            document.getElementById("choices").innerHTML =
+                "You chose: <strong>" + userChoice +
+                "</strong> | Computer chose: <strong>" +
+                computerChoice + "</strong>";
+
+            var message = "";
+
+            if (userChoice == computerChoice) {
+
+                message = "It's a Draw";
+
+            }
+            else if (
+                (userChoice == "rock" && computerChoice == "scissors") ||
+                (userChoice == "paper" && computerChoice == "rock") ||
+                (userChoice == "scissors" && computerChoice == "paper")
+            ) {
+
+                message = "You Win";
+
+            }
+            else {
+
+                message = "You Lose";
+
+            }
+
+            document.getElementById("result").innerHTML = message;
+        }
+
+    </script>
+
+</body>
+
+</html>

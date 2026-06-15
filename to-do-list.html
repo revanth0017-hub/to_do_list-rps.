@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>To-Do List</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .todo {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: white;
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background-color: red;
+            padding: 5px 10px;
+        }
+
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>To-Do List</h2>
+
+    <div class="input-container">
+        <input type="text" class="todo" placeholder="Enter a task">
+        <button onclick="addTask()">ADD</button>
+    </div>
+
+    <ul id="todolist"></ul>
+
+    <script>
+
+        function addTask() {
+
+            var inputBox = document.querySelector(".todo");
+            var text = inputBox.value;
+
+            if (text == "") {
+                alert("Please enter a task");
+                return;
+            }
+
+            var ul = document.getElementById("todolist");
+
+            var li = document.createElement("li");
+
+            var taskText = document.createTextNode(text);
+
+            li.appendChild(taskText);
+
+            var delBtn = document.createElement("button");
+            delBtn.innerHTML = "Delete";
+            delBtn.className = "delete-btn";
+
+            delBtn.onclick = function () {
+                li.remove();
+            };
+
+            li.appendChild(delBtn);
+
+            ul.appendChild(li);
+
+            inputBox.value = "";
+        }
+
+        document.addEventListener("keydown", function (e) {
+
+            if (e.key == "Enter") {
+
+                var inputBox = document.querySelector(".todo");
+
+                if (document.activeElement == inputBox) {
+                    addTask();
+                }
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
